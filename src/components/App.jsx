@@ -33,7 +33,7 @@ export class App extends Component {
     const { contacts } = this.state;
 
     const isNameExist = contacts.some(
-      (existingContact) => existingContact.name === contact.name
+      (existingContact) => existingContact.name.toLowerCase() === contact.name.toLowerCase()
     );
 
     if (isNameExist) {
