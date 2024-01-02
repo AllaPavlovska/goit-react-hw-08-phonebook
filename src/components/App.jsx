@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import ContactForm from './AddProfile/AddProfileForm';
 import ContactList from './ContactList';
 import Filter from './Filter';
@@ -11,19 +11,12 @@ const initialContacts = [
 ];
 
 export const App = () => {
-  const [contacts, setContacts] = useState(initialContacts);
-  const [filter, setFilter] = useState('');
-
-  useEffect(() => {
+  const [contacts, setContacts] = useState(() => {
     const savedContacts = localStorage.getItem('contacts');
-    if (savedContacts) {
-      setContacts(JSON.parse(savedContacts));
-    }
-  }, []);
+    return savedContacts ? JSON.parse(savedContacts) : initialContacts;
+  });
 
-  useEffect(() => {
-    localStorage.setItem('contacts', JSON.stringify(contacts));
-  }, [contacts]);
+  const [filter, setFilter] = useState('');
 
   const handleAddContact = (contact) => {
     const isNameExist = contacts.some(
@@ -48,16 +41,12 @@ export const App = () => {
     setFilter(e.target.value);
   };
 
-  const filteredContacts = contacts.filter((contact) =>
-    contact.name.toLowerCase().includes(filter.toLowerCase())
-  );
-
   return (
     <div>
       <h1>Phonebook</h1>
       <ContactForm onSubmit={handleAddContact} />
       <Filter value={filter} onChange={handleFilterChange} />
-      <ContactList contacts={filteredContacts} onDeleteContact={handleDeleteContact} />
+      <ContactList contacts={contacts} onDeleteContact={handleDeleteContact} />
     </div>
   );
 };
