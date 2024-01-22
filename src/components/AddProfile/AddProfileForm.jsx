@@ -1,8 +1,11 @@
 import React, { useState } from 'react';
-import { nanoid } from 'nanoid';
+import { useDispatch } from 'react-redux';
+import { addContact } from '../../redux/contactSlice';
 import css from './AddProfile.module.css';
+import { nanoid } from 'nanoid';
 
-const ContactForm = ({ onSubmit }) => {
+const ContactForm = () => {
+  const dispatch = useDispatch();
   const [formData, setFormData] = useState({ name: '', number: '' });
 
   const handleChange = (e) => {
@@ -13,7 +16,7 @@ const ContactForm = ({ onSubmit }) => {
   const handleFormSubmit = (e) => {
     e.preventDefault();
     const { name, number } = formData;
-    onSubmit({ id: nanoid(), name, number });
+    dispatch(addContact({ id: nanoid(), name, number }));
     setFormData({ name: '', number: '' });
   };
 
@@ -29,7 +32,7 @@ const ContactForm = ({ onSubmit }) => {
           onChange={handleChange}
           required
         />
-        <span className={css.formLabelText}> Number:</span>
+        <span className={css.formLabelText}>Number:</span>
         <input
           className={css.formInput}
           type="tel"
