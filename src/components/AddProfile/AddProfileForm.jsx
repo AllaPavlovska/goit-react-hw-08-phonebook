@@ -1,13 +1,15 @@
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { addContact, selectContacts } from '../../redux/contactSlice';
+import { addContactAsync, selectContacts, selectIsLoading, selectError } from '../../redux/contactSlice';
 import css from './AddProfile.module.css';
-import { nanoid } from 'nanoid';
 
 const ContactForm = () => {
   const dispatch = useDispatch();
   const contacts = useSelector(selectContacts);
-  const [formData, setFormData] = useState({ name: '', number: '' });
+  const isLoading = useSelector(selectIsLoading);
+  const error = useSelector(selectError);
+
+  const [formData, setFormData] = useState({ name: '', phone: '' });
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -16,7 +18,7 @@ const ContactForm = () => {
 
   const handleFormSubmit = (e) => {
     e.preventDefault();
-    const { name, number } = formData;
+    const { name, phone } = formData;
 
     const isNameExist = contacts.some(
       (existingContact) => existingContact.name.toLowerCase() === name.toLowerCase()
@@ -27,8 +29,8 @@ const ContactForm = () => {
       return;
     }
 
-    dispatch(addContact({ id: nanoid(), name, number }));
-    setFormData({ name: '', number: '' });
+    dispatch(addContactAsync({ name, phone }));
+    setFormData({ name: '', phone: '' });
   };
 
   return (
@@ -43,16 +45,18 @@ const ContactForm = () => {
           onChange={handleChange}
           required
         />
-        <span className={css.formLabelText}>Number:</span>
+        <span className={css.formLabelText}>Phone:</span>
         <input
           className={css.formInput}
           type="tel"
-          name="number"
-          value={formData.number}
+          name="phone"
+          value={formData.phone}
           onChange={handleChange}
           required
         />
       </label>
+      {isLoading && <p>Saving...</p>}
+      {error && <p>Error: {error}</p>}
       <button type="submit">Add Contact</button>
     </form>
   );

@@ -1,20 +1,21 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { deleteContact, selectFilteredContacts } from '../redux/contactSlice';
+import { deleteContactAsync, selectFilteredContacts } from '../redux/contactSlice';
 
 const ContactList = () => {
   const dispatch = useDispatch();
+  // Correct the import statement here
   const filteredContacts = useSelector(selectFilteredContacts);
 
   const handleDeleteContact = (contactId) => {
-    dispatch(deleteContact(contactId));
+    dispatch(deleteContactAsync(contactId));
   };
 
   return (
     <ul>
       {filteredContacts.map((contact) => (
         <li key={contact.id}>
-          {contact.name}: {contact.number}
+          {contact.name}: {contact.phone}
           <button onClick={() => handleDeleteContact(contact.id)}>Delete</button>
         </li>
       ))}
