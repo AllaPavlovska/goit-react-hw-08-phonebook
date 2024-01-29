@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { addContactAsync, selectContacts, selectIsLoading, selectError } from '../../redux/contactSlice';
+import { addContactAsync } from '../../redux/operations';
+import { selectContacts, selectIsLoading, selectError } from '../../redux/selectors';
 import css from './AddProfile.module.css';
 
 const ContactForm = () => {

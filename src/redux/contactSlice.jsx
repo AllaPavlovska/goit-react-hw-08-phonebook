@@ -1,37 +1,6 @@
-import {
-  createSlice,
-  createAsyncThunk,
-  createSelector,
-} from '@reduxjs/toolkit';
-import {
-  getContacts,
-  postContact,
-  delContact,
-} from '../services/api';
-
-export const fetchContactsAsync = createAsyncThunk(
-  'contacts/fetchAll',
-  async () => {
-    const response = await getContacts();
-    return response.data;
-  }
-);
-
-export const addContactAsync = createAsyncThunk(
-  'contacts/addContact',
-  async contact => {
-    const response = await postContact(contact);
-    return response.data;
-  }
-);
-
-export const deleteContactAsync = createAsyncThunk(
-  'contacts/deleteContact',
-  async contactId => {
-    await delContact(contactId);
-    return contactId;
-  }
-);
+import { createSlice } from '@reduxjs/toolkit';
+import { fetchContactsAsync, addContactAsync, deleteContactAsync } from './operations';
+import { selectContacts, selectFilter, selectIsLoading, selectError, selectFilteredContacts } from './selectors';
 
 const contactSlice = createSlice({
   name: 'contacts',
@@ -70,7 +39,7 @@ const contactSlice = createSlice({
       })
       .addCase(addContactAsync.rejected, (state, action) => {
         state.isLoading = false;
-        state.error = action.error.message;
+        state.error = action.payload;
       })
       .addCase(deleteContactAsync.pending, state => {
         state.isLoading = true;
@@ -84,25 +53,11 @@ const contactSlice = createSlice({
       })
       .addCase(deleteContactAsync.rejected, (state, action) => {
         state.isLoading = false;
-        state.error = action.error.message;
+        state.error = action.payload;
       });
   },
 });
 
 export const { setFilter } = contactSlice.actions;
-export const selectContacts = state => state.contacts.items;
-export const selectFilter = state => state.contacts.filter;
-export const selectIsLoading = state => state.contacts.isLoading;
-export const selectError = state => state.contacts.error;
-
-export const selectFilteredContacts = createSelector(
-  [selectContacts, selectFilter],
-  (contacts, filter) => {
-    const normalizedFilter = filter.toLowerCase();
-    return contacts.filter(contact =>
-      contact.name.toLowerCase().includes(normalizedFilter)
-    );
-  }
-);
-
+export { selectContacts, selectFilter, selectIsLoading, selectError, selectFilteredContacts };
 export default contactSlice.reducer;

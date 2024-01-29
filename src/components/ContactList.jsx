@@ -1,10 +1,10 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { deleteContactAsync, selectFilteredContacts } from '../redux/contactSlice';
+import { deleteContactAsync } from '../redux/operations';
+import { selectFilteredContacts } from '../redux/selectors';
 
 const ContactList = () => {
   const dispatch = useDispatch();
-  // Correct the import statement here
   const filteredContacts = useSelector(selectFilteredContacts);
 
   const handleDeleteContact = (contactId) => {
