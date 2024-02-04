@@ -1,34 +1,9 @@
-// import React from 'react';
-// import { useDispatch, useSelector } from 'react-redux';
-// import { deleteContactAsync } from '../../redux/contacts/operations';
-// import { selectFilteredContacts } from '../../redux/contacts/selectors';
-
-// const ContactList = () => {
-//   const dispatch = useDispatch();
-//   const filteredContacts = useSelector(selectFilteredContacts);
-
-//   const handleDeleteContact = (contactId) => {
-//     dispatch(deleteContactAsync(contactId));
-//   };
-
-//   return (
-//     <ul>
-//       {filteredContacts.map((contact) => (
-//         <li key={contact.id}>
-//           {contact.name}: {contact.phone}
-//           <button onClick={() => handleDeleteContact(contact.id)}>Delete</button>
-//         </li>
-//       ))}
-//     </ul>
-//   );
-// };
-
-// export default ContactList;
 import { useDispatch, useSelector } from 'react-redux';
-import { apiDeleteContact, selectFilteredContacts } from '../../redux';
-import { ContactItem } from 'components';
+import { selectFilteredContacts } from '../../redux/contacts/selectors';
+import { apiDeleteContact } from '../../redux/contacts/operations';
+import { ContactItem } from 'components/ContactItem/ContactItem';
 
-import css from 'components/ContactsList/ContactsList.module.css';
+import css from 'components/ContactsList/ContactList.module.css';
 import { NotificationManager } from 'react-notifications';
 
 export const ContactsList = () => {

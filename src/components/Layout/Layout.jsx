@@ -5,14 +5,14 @@ import {
   NotificationContainer,
   NotificationManager,
 } from 'react-notifications';
-import { Button, Loader } from 'components';
-
+import { Button } from 'components/Button/Button';
+import { Loader } from 'components/Loader/Loader';
 import css from 'components/Layout/Layout.module.css';
+import { authLogOutUser } from '../../redux/auth/authOperation';
 import {
-  authLogOutUser,
   selectAuthIsLoggedIn,
   selectAuthUserData,
-} from '../../redux';
+} from '../../redux/auth/authSelectors';
 
 export const Layout = () => {
   const isLoggedIn = useSelector(selectAuthIsLoggedIn);

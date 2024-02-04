@@ -1,45 +1,18 @@
-// import React, { useEffect } from 'react';
-// import { useDispatch, useSelector } from 'react-redux';
-// import { fetchContactsAsync } from '../../redux/contacts/operations';
-// import { selectIsLoading, selectError } from '../../redux/contacts/selectors';
-// import ContactForm from '../AddProfile/AddProfileForm';
-// import ContactList from '../ContactList/ContactList';
-// import Filter from '../Filter/Filter';
-
-// export const App = () => {
-//   const dispatch = useDispatch();
-//   const isLoading = useSelector(selectIsLoading);
-//   const error = useSelector(selectError);
-
-//   useEffect(() => {
-//     dispatch(fetchContactsAsync());
-//   }, [dispatch]);
-
-//   return (
-//     <div>
-//       <h1>Phonebook</h1>
-//       {isLoading && <p>Loading...</p>}
-//       {error && <p>Error: {error}</p>}
-//       <ContactForm />
-//       <Filter />
-//       <ContactList />
-//     </div>
-//   );
-// };
-
-// export default App;
-
 import { Route, Routes } from 'react-router-dom';
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
-import { Contacts, LogIn, Register } from 'pages';
-import { Layout, PrivatRoute } from 'components';
+import { Contacts } from 'pages/Contacts/Contacts';
+import { LogIn } from 'pages/Login/Login';
+import { Register } from 'pages/Register/Register';
+import { Layout } from 'components/Layout/Layout';
+import { PrivatRoute } from 'components/PrivateRoute/PrivateRoute';
 
 import 'react-notifications/lib/notifications.css';
-import { Home } from 'pages';
-import { authRefreshUser, selectAuthIsRefreshing } from '../../redux';
-import { RestrictedRoute } from 'components';
+import { Home } from 'pages/Home/Home';
+import { selectAuthIsRefreshing } from '../../redux/auth/authSelectors';
+import { authRefreshUser } from '../../redux/auth/authOperation';
+import { RestrictedRoute } from 'components/RestrictedRoute/RestrictedRoute';
 
 export const App = () => {
   const dispatch = useDispatch();

@@ -1,12 +1,12 @@
 import { LuUserSquare } from 'react-icons/lu';
 import { useDispatch } from 'react-redux';
 import { RiLockPasswordLine } from 'react-icons/ri';
-import { authLoginUser } from '../../redux';
+import { authLoginUser } from '../../redux/auth/authOperation';
 import { NotificationManager } from 'react-notifications';
 import { Formik } from 'formik';
-import { Button } from 'components';
+import { Button } from 'components/Button/Button';
 import * as Yup from 'yup';
-import css from 'pages/LogIn/Login.module.css';
+import css from 'pages/Login/Login.module.css';
 
 export const LogIn = () => {
   const dispatch = useDispatch();

@@ -1,13 +1,15 @@
 import { useSelector } from 'react-redux';
-import { selectContacts, selectError, selectStatus } from '../../redux';
-
 import {
-  ContactForm,
-  Filter,
-  Container,
-  ContactsList,
-  Loader,
-} from 'components';
+  selectContacts,
+  selectError,
+  selectStatus,
+} from '../../redux/contacts/selectors';
+
+import { ContactForm } from 'components/AddProfile/AddProfileForm';
+import { Filter } from 'components/Filter/Filter';
+import { Container } from 'components/Container/Container';
+import { ContactsList } from 'components/ContactsList/ContactsList';
+import { Loader } from 'components/Loader/Loader';
 
 import css from 'components/App/App.module.css';
 

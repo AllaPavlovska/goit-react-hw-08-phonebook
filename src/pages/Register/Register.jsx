@@ -1,11 +1,11 @@
 import { LuUserSquare } from 'react-icons/lu';
 import { useDispatch } from 'react-redux';
-import { authRegisterUser } from '../../redux';
+import { authRegisterUser } from '../../redux/auth/authOperation';
 import { HiOutlineMail } from 'react-icons/hi';
 import { RiLockPasswordLine } from 'react-icons/ri';
 import { NotificationManager } from 'react-notifications';
 import { Formik } from 'formik';
-import { Button } from 'components';
+import { Button } from 'components/Button/Button';
 import * as Yup from 'yup';
 import css from 'pages/Register/Register.module.css';
 
