@@ -52,7 +52,7 @@ import {
 } from 'redux-persist';
 import storage from 'redux-persist/lib/storage';
 
-import { contactsReduser } from './contacts/contactsSlice';
+import { contactsReduser } from '../redux/contacts/contactSlice';
 import { filterReduser } from './contacts/filtersSlice';
 import { authReduser } from './auth/authSlice';
 
