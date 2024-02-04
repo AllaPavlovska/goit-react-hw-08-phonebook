@@ -53,8 +53,8 @@ import {
 import storage from 'redux-persist/lib/storage';
 
 import { contactsReduser } from '../redux/contacts/contactSlice';
-import { filterReduser } from './contacts/filtersSlice';
-import { authReduser } from './auth/authSlice';
+import { filterReduser } from '../redux/contacts/filterSlice';
+import { authReduser } from '../redux/auth/authSlice'
 
 const authConfig = {
   key: 'auth',
