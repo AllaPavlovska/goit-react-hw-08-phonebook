@@ -4,7 +4,7 @@ import {
   apiLoginUser,
   apiRefreshUser,
   apiRegisterUser,
-} from 'services';
+} from 'services/author.api';
 
 export const authRegisterUser = createAsyncThunk(
   'auth/authRegisterUser',

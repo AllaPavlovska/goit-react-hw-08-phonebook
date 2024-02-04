@@ -2,7 +2,7 @@ import axios from 'axios';
 import {
   clearTokenContactsInstance,
   setTokenContactsInstance,
-} from './posts-api';
+} from 'services/api';
 
 export const authInstance = axios.create({
   baseURL: 'https://connections-api.herokuapp.com',

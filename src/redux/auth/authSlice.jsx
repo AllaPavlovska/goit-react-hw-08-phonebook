@@ -5,7 +5,7 @@ import {
   authLoginUser,
   authRefreshUser,
   authRegisterUser,
-} from 'redux/auth/authOperation';
+} from '../../redux/auth/authOperation';
 import {
   handleAuthPending,
   handleAuthRefreshUserPending,
@@ -14,7 +14,7 @@ import {
   handleFulfilledLogOutUser,
   handleFulfilledRefreshUser,
   handleFulfilledRegisterUser,
-} from 'redux/auth/handleAuthFunctionReduser';
+} from '../../redux/auth/handleAuthFunctionReduser';
 
 const initialAuth = {
   userData: { name: null, number: null },
