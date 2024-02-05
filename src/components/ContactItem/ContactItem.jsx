@@ -13,7 +13,6 @@ export const ContactItem = ({
   return (
     <li className={css.item}>
       <Link to={`/${id}`} state={{ from: location }}>
-        <img className={css.avatar} src={avatar} alt={name} />
         <span className={css.name}> {`${name} `}</span>
       </Link>
       <span className={css.phone}> {`☎ ${phone}`}</span>
