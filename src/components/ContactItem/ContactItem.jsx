@@ -3,10 +3,9 @@ import { useSelector } from 'react-redux';
 import { selectLocation } from '../../redux/contacts/selectors';
 
 import css from 'components/ContactItem/ContactItem.module.css';
-import { number } from 'yup';
 
 export const ContactItem = ({
-  contact: { id, name, number },
+  contact: { id, name ,number  },
   onClickDelBtn,
 }) => {
   const location = useSelector(selectLocation);
