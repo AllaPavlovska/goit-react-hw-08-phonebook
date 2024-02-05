@@ -3,9 +3,10 @@ import { useSelector } from 'react-redux';
 import { selectLocation } from '../../redux/contacts/selectors';
 
 import css from 'components/ContactItem/ContactItem.module.css';
+import { number } from 'yup';
 
 export const ContactItem = ({
-  contact: { id, name, phone, avatar },
+  contact: { id, name, number },
   onClickDelBtn,
 }) => {
   const location = useSelector(selectLocation);
@@ -15,7 +16,7 @@ export const ContactItem = ({
       <Link to={`/${id}`} state={{ from: location }}>
         <span className={css.name}> {`${name} `}</span>
       </Link>
-      <span className={css.phone}> {`☎ ${phone}`}</span>
+      <span className={css.phone}> {`☎ ${number}`}</span>
       <button className={css.button} type="button" onClick={onClickDelBtn}>
         ❌
       </button>
